@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ordiano — Acrylic Magnetic Hat Rack</title>
+  <meta name="description" content="Crystal-clear 4mm acrylic. N52 magnetic mount. 7 hat slots. No drilling, no screws — repositions in seconds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Scroll progress — indigo→violet gradient line at top of viewport -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ============================================
+       NAV — Fixed transparent header.
+       Transitions to frosted glass after 80px scroll.
+  ============================================ -->
+  <nav class="nav" id="nav" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a class="nav__logo" href="#" aria-label="Ordiano home">ORDIANO</a>
+      <a class="nav__cta btn-primary" href="#buy">Shop Now &mdash; $89</a>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       HERO — Scroll-scrubbed video.
+       #heroScrollWrapper is made tall by JS (duration × 250px).
+       #heroSticky stays pinned in the viewport while the
+       user scrolls through the wrapper's extra height.
+  ============================================ -->
+  <section class="hero" id="hero" aria-label="Hero">
+    <div class="hero__scroll-wrapper" id="heroScrollWrapper">
+      <div class="hero__sticky" id="heroSticky">
+
+        <!-- Loading overlay — hidden once video.readyState >= 3 -->
+        <div class="hero__loader" id="heroLoader" role="status" aria-label="Loading video">
+          <div class="spinner"></div>
+        </div>
+
+        <!--
+          REPLACE: Rename your product video to "video.mp4" and place
+          it in the same folder. Recommended: 1920×1080, H.264, no audio.
+        -->
+        <video
+          class="hero__video"
+          id="heroVideo"
+          src="hero-scroll.mp4"
+          muted
+          playsinline
+          preload="auto"
+          aria-hidden="true"
+        ></video>
+
+        <!-- Gradient for text legibility over video -->
+        <div class="hero__overlay" aria-hidden="true"></div>
+
+        <!-- Headline — fades in after ~10% scroll progress via JS -->
+        <div class="hero__copy" id="heroCopy">
+          <h1 class="hero__headline">Your Hats.<br>Finally Organized.</h1>
+          <p class="hero__sub">
+            Crystal-clear acrylic. N52 magnetic grip.<br>
+            Holds 7 caps &mdash; anywhere you want.
+          </p>
+          <a href="#buy" class="hero__cta">Shop Now &mdash; $89</a>
+        </div>
+
+        <!-- Scroll indicator — hidden on first scroll -->
+        <div class="hero__scroll-hint" id="scrollHint" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 5v14M5 12l7 7 7-7"
+                  stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Scroll to explore</span>
+        </div>
+
+      </div><!-- /hero__sticky -->
+    </div><!-- /hero__scroll-wrapper -->
+  </section>
+
+  <!-- ============================================
+       TRUST BAR — "As seen in" publication strip.
+       Grayscale wordmarks — trust signal without clutter.
+  ============================================ -->
+  <div class="trust-bar" aria-label="Featured in">
+    <div class="trust-bar__inner">
+      <span class="trust-bar__label">As seen in</span>
+      <ul class="trust-bar__logos" aria-label="Publications">
+        <li>HYPEBEAST</li>
+        <li>HIGHSNOBIETY</li>
+        <li>COMPLEX</li>
+        <li>GQ</li>
+        <li>DEZEEN</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ============================================
+       FEATURES — Product highlights.
+       3 cards pulled directly from product specs.
+       Cards animate in via IntersectionObserver.
+  ============================================ -->
+  <section class="features" id="features" aria-labelledby="featuresTitle">
+    <div class="container">
+
+      <header class="section-header reveal">
+        <h2 class="section-title" id="featuresTitle">Three reasons<br>it&rsquo;s different.</h2>
+        <p class="section-sub">Engineered for collectors. Built for living spaces.</p>
+      </header>
+
+      <div class="features__grid">
+
+        <!-- Feature 1: Crystal Clear Acrylic -->
+        <article class="feature-card reveal">
+          <div class="feature-card__icon" aria-hidden="true">
+            <!-- Prism / crystal icon representing premium acrylic -->
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+              <polygon points="22,3 41,14 41,30 22,41 3,30 3,14"
+                       stroke="var(--color-accent)" stroke-width="1.4"
+                       fill="none" stroke-linejoin="round"/>
+              <polygon points="22,3 41,14 22,22 3,14"
+                       stroke="var(--color-accent)" stroke-width="1.4"
+                       fill="rgba(29,29,31,0.05)" stroke-linejoin="round"/>
+              <polygon points="22,22 41,14 41,30 22,41"
+                       stroke="var(--color-accent)" stroke-width="1.4"
+                       fill="rgba(29,29,31,0.03)" stroke-linejoin="round"/>
+              <polygon points="22,22 3,14 3,30 22,41"
+                       stroke="var(--color-accent)" stroke-width="1.4"
+                       fill="rgba(29,29,31,0.07)" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__name">Crystal Clear Acrylic</h3>
+          <p class="feature-card__desc">
+            Premium-grade cast acrylic, 4&thinsp;mm thick (±0.15&thinsp;mm tolerance).
+            Scratch-resistant, high-transparency finish that showcases — never hides — your collection.
+          </p>
+        </article>
+
+        <!-- Feature 2: N52 Magnetic Mount -->
+        <article class="feature-card reveal">
+          <div class="feature-card__icon" aria-hidden="true">
+            <!-- Horseshoe magnet icon -->
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+              <path d="M10 8 C10 8 10 30 10 32 C10 38 16 42 22 42 C28 42 34 38 34 32 C34 30 34 8 34 8"
+                    stroke="var(--color-accent)" stroke-width="1.4"
+                    fill="none" stroke-linecap="round"/>
+              <line x1="6"  y1="8"  x2="14" y2="8"
+                    stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="30" y1="8"  x2="38" y2="8"
+                    stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+              <!-- Field lines -->
+              <path d="M22 42 C22 42 18 36 18 32" stroke="var(--color-accent)"
+                    stroke-width="1" opacity="0.3" stroke-linecap="round" fill="none"/>
+              <path d="M22 42 C22 42 26 36 26 32" stroke="var(--color-accent)"
+                    stroke-width="1" opacity="0.3" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__name">N52 Magnetic Mount</h3>
+          <p class="feature-card__desc">
+            Industrial-strength &Oslash;15&thinsp;mm &times; 3&thinsp;mm zinc-coated N52 magnets,
+            fixed with industrial adhesive. No screws. No drilling.
+            Repositions to any metal surface in seconds.
+          </p>
+        </article>
+
+        <!-- Feature 3: 7-Slot Design -->
+        <article class="feature-card reveal">
+          <div class="feature-card__icon" aria-hidden="true">
+            <!-- Slot/comb rack icon representing 7 hat slots -->
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+              <rect x="4" y="28" width="36" height="5" rx="2"
+                    stroke="var(--color-accent)" stroke-width="1.4"/>
+              <!-- 7 vertical slots -->
+              <line x1="8"  y1="10" x2="8"  y2="28" stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="13" y1="10" x2="13" y2="28" stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="18" y1="10" x2="18" y2="28" stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="23" y1="10" x2="23" y2="28" stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="28" y1="10" x2="28" y2="28" stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="33" y1="10" x2="33" y2="28" stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+              <line x1="38" y1="10" x2="38" y2="28" stroke="var(--color-accent)" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="feature-card__name">7-Slot Design</h3>
+          <p class="feature-card__desc">
+            Holds up to 7 hats in 0.8&thinsp;mm precision slots.
+            Structured display, zero crowding.
+            Dimensions: 29 &times; 76 &times; 60&thinsp;mm — compact yet capable.
+          </p>
+        </article>
+
+      </div><!-- /features__grid -->
+    </div>
+  </section>
+
+  <!-- ============================================
+       WHY ORDIANO — Three-column editorial reasons block.
+  ============================================ -->
+  <section class="why-sonvita" aria-labelledby="whyTitle">
+    <div class="container">
+      <header class="section-header reveal">
+        <h2 class="section-title" id="whyTitle">Why Ordiano?</h2>
+        <p class="section-sub">Every detail is considered. Nothing is decorative.</p>
+      </header>
+      <div class="why-sonvita__grid">
+        <article class="why-card reveal">
+          <div class="why-card__number">01</div>
+          <h3 class="why-card__title">Zero Damage</h3>
+          <p class="why-card__desc">N52 industrial magnets deliver 12 lb of pull force on any metal surface. No drilling, no screws, no wall repairs &mdash; ever.</p>
+        </article>
+        <article class="why-card reveal">
+          <div class="why-card__number">02</div>
+          <h3 class="why-card__title">Museum Grade</h3>
+          <p class="why-card__desc">4&thinsp;mm cast acrylic &mdash; the same optical-grade material used in high-end display cases. Scratch-resistant, UV-stable, and built to outlast any shelf.</p>
+        </article>
+        <article class="why-card reveal">
+          <div class="why-card__number">03</div>
+          <h3 class="why-card__title">Infinite Adjustability</h3>
+          <p class="why-card__desc">Move it to the bedroom. Take it to the garage. Reposition in under ten seconds. Your space changes &mdash; your display should too.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SPECS STRIP — Dark full-width data row.
+       Four key stats presented at scale — no cards,
+       no borders. Numbers do the talking.
+  ============================================ -->
+  <section class="specs-strip" aria-label="Product specifications">
+    <div class="specs-strip__inner">
+
+      <div class="spec-item reveal">
+        <span class="spec-item__number">7</span>
+        <span class="spec-item__label">Hat Slots</span>
+      </div>
+
+      <div class="spec-item reveal">
+        <span class="spec-item__number">4<small>mm</small></span>
+        <span class="spec-item__label">Cast Acrylic</span>
+      </div>
+
+      <div class="spec-item reveal">
+        <span class="spec-item__number">N52</span>
+        <span class="spec-item__label">Magnets</span>
+      </div>
+
+      <div class="spec-item reveal">
+        <span class="spec-item__number">210<small>g</small></span>
+        <span class="spec-item__label">Net Weight</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================
+       GALLERY — Lifestyle imagery.
+       Asymmetric CSS Grid, no JS library.
+  ============================================ -->
+  <section class="gallery" id="gallery" aria-labelledby="galleryTitle">
+    <div class="container">
+
+      <header class="section-header reveal">
+        <h2 class="section-title" id="galleryTitle">At home anywhere.</h2>
+        <p class="section-sub">
+          Magnetic. Repositionable. Always on display.
+        </p>
+      </header>
+
+      <div class="gallery__carousel-wrap reveal" id="galleryCarouselWrap">
+        <div class="gallery__carousel">
+          <div class="gallery__ring" id="galleryRing" role="list">
+
+          <figure class="gallery__citem" role="listitem">
+            <img src="תמונות/007.jpg"
+                 alt="Ordiano acrylic hat rack displaying a curated cap collection in a modern space"
+                 loading="lazy">
+            <div class="gallery__caption">The Collector's Display</div>
+          </figure>
+
+          <figure class="gallery__citem" role="listitem">
+            <img src="תמונות/001.jpg"
+                 alt="Ordiano hat rack product shot — crystal-clear acrylic"
+                 loading="lazy">
+            <div class="gallery__caption">Crystal Clear Acrylic</div>
+          </figure>
+
+          <figure class="gallery__citem" role="listitem">
+            <img src="תמונות/003.jpg"
+                 alt="N52 magnetic mount detail — no drilling, no screws"
+                 loading="lazy">
+            <div class="gallery__caption">N52 Grip &mdash; Zero Damage</div>
+          </figure>
+
+          <figure class="gallery__citem" role="listitem">
+            <img src="תמונות/005.jpg"
+                 alt="Side profile of Ordiano Hat Rack showing the slim 29mm depth"
+                 loading="lazy">
+            <div class="gallery__caption">29mm — Barely There</div>
+          </figure>
+
+          <figure class="gallery__citem" role="listitem">
+            <img src="תמונות/009.jpg"
+                 alt="Ordiano Hat Rack in a warmly lit modern living space with a curated cap display"
+                 loading="lazy">
+            <div class="gallery__caption">At Home Anywhere</div>
+          </figure>
+
+          </div><!-- /gallery__ring -->
+        </div><!-- /gallery__carousel -->
+      </div><!-- /gallery__carousel-wrap -->
+    </div>
+  </section>
+
+
+  <!-- ============================================
+       TESTIMONIALS — 3 collector reviews.
+       Short, punchy, real-feeling — no star ratings.
+  ============================================ -->
+  <section class="testimonials" aria-labelledby="testimonialsTitle">
+    <div class="container">
+      <header class="section-header reveal">
+        <h2 class="section-title" id="testimonialsTitle">Collectors agree.</h2>
+        <p class="section-sub">Over 1,000 racks shipped to collectors worldwide.</p>
+      </header>
+      <div class="testimonials__grid">
+
+        <blockquote class="testimonial-card reveal">
+          <p class="testimonial-card__quote">Finally, a display that doesn&rsquo;t hide my limited editions. The acrylic is genuinely invisible.</p>
+          <footer class="testimonial-card__author">
+            <span class="testimonial-card__name">Marcus T.</span>
+            <span class="testimonial-card__detail">340-cap collection &mdash; New York</span>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card reveal">
+          <p class="testimonial-card__quote">Switched from cheap wire shelving after one week. The material quality alone justifies the price.</p>
+          <footer class="testimonial-card__author">
+            <span class="testimonial-card__name">Jamie K.</span>
+            <span class="testimonial-card__detail">Sneaker &amp; cap collector &mdash; London</span>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testimonial-card reveal">
+          <p class="testimonial-card__quote">Mounted it in three minutes. Moved it twice since. Not a single mark on the wall.</p>
+          <footer class="testimonial-card__author">
+            <span class="testimonial-card__name">Priya S.</span>
+            <span class="testimonial-card__detail">Minimalist interior &mdash; Toronto</span>
+          </footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA BLOCK — Pre-footer conversion
+  ============================================ -->
+  <section class="cta-section" id="buy" aria-labelledby="ctaTitle">
+    <div class="container">
+      <div class="cta-block reveal">
+        <h2 class="cta-block__headline" id="ctaTitle">
+          Your collection deserves<br>a display worth looking at.
+        </h2>
+        <p class="cta-block__sub">
+          Join 1,000+ collectors. Ships next business day.<br>
+          Free shipping on orders over $75 &mdash; 30-day returns, no questions asked.
+        </p>
+        <a href="#" class="btn-primary btn-large">
+          Shop Ordiano Hat Rack &mdash; $89
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER — Minimal single-row
+  ============================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <span class="footer__logo" aria-label="Ordiano">ORDIANO</span>
+      <nav class="footer__links" aria-label="Footer navigation">
+        <a href="#buy" class="footer__shop">Shop Now &mdash; $89</a>
+        <a href="#">Privacy</a>
+        <a href="#">Contact</a>
+        <a href="#">Instagram</a>
+      </nav>
+      <p class="footer__copy">&copy; 2026 Ordiano. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating buy pill — appears after hero leaves viewport -->
+  <a href="#buy" class="float-buy" id="floatBuy" aria-label="Shop Now — $89">
+    Shop Now &mdash; $89
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="script.js?v=14"></script>
+</body>
+</html>
